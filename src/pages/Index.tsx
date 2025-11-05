@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -21,6 +21,32 @@ const Index = () => {
     membersCount: "",
     description: ""
   });
+
+  const reviewsRef = useRef<HTMLDivElement>(null);
+  const photosRef = useRef<HTMLDivElement>(null);
+  const [reviewsVisible, setReviewsVisible] = useState(false);
+  const [photosVisible, setPhotosVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.target === reviewsRef.current && entry.isIntersecting) {
+            setReviewsVisible(true);
+          }
+          if (entry.target === photosRef.current && entry.isIntersecting) {
+            setPhotosVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (reviewsRef.current) observer.observe(reviewsRef.current);
+    if (photosRef.current) observer.observe(photosRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -214,7 +240,7 @@ const Index = () => {
             Что говорят участники прошлых лет
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div ref={reviewsRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <Card>
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
@@ -237,7 +263,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className={`transition-all duration-500 delay-150 ${reviewsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -259,7 +285,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className={`transition-all duration-500 delay-300 ${reviewsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <CardContent className="pt-6">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -282,18 +308,18 @@ const Index = () => {
             </Card>
           </div>
 
-          <div className="mb-16">
+          <div ref={photosRef} className="mb-16">
             <h3 className="text-2xl font-heading font-bold text-center mb-8">Фото с прошлых конкурсов</h3>
             <div className="grid md:grid-cols-2 gap-6">
               <img 
                 src="https://cdn.poehali.dev/projects/4e866915-7fa8-43c5-b09e-696c0c485be8/files/52293e9d-d08d-476d-bf16-84b6ceed5452.jpg" 
                 alt="Корпоративный хор" 
-                className="rounded-xl w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                className={`rounded-xl w-full h-64 object-cover hover:scale-105 transition-all duration-500 ${photosVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
               />
               <img 
                 src="https://cdn.poehali.dev/projects/4e866915-7fa8-43c5-b09e-696c0c485be8/files/e4825515-fae8-4fe2-9c9b-d6c18289b562.jpg" 
                 alt="Студенческий хор" 
-                className="rounded-xl w-full h-64 object-cover hover:scale-105 transition-transform duration-300"
+                className={`rounded-xl w-full h-64 object-cover hover:scale-105 transition-all duration-500 delay-150 ${photosVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
               />
             </div>
           </div>
