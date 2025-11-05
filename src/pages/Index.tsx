@@ -210,12 +210,9 @@ const Index = () => {
 
       <section className="py-20 px-4">
         <div className="container mx-auto">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-4">
-            Социальное доказательство
-          </h2>
-          <p className="text-center text-muted-foreground mb-12 text-lg">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-center mb-12">
             Что говорят участники прошлых лет
-          </p>
+          </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <Card>
