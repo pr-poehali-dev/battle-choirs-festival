@@ -390,14 +390,20 @@ const Index = () => {
             <div>
               <h4 className="font-heading font-semibold text-lg mb-4">Социальные сети</h4>
               <div className="flex gap-4">
-                <Button variant="outline" size="icon" className="rounded-full">
-                  <Icon name="Send" size={20} />
+                <Button variant="outline" size="icon" className="rounded-full" asChild>
+                  <a href="https://t.me/bitvahоrov" target="_blank" rel="noopener noreferrer">
+                    <Icon name="Send" size={20} />
+                  </a>
                 </Button>
-                <Button variant="outline" size="icon" className="rounded-full">
-                  <Icon name="Circle" size={20} />
+                <Button variant="outline" size="icon" className="rounded-full" asChild>
+                  <a href="https://vk.com/bitvahоrov" target="_blank" rel="noopener noreferrer">
+                    <Icon name="Users" size={20} />
+                  </a>
                 </Button>
-                <Button variant="outline" size="icon" className="rounded-full">
-                  <Icon name="Youtube" size={20} />
+                <Button variant="outline" size="icon" className="rounded-full" asChild>
+                  <a href="https://youtube.com/@bitvahоrov" target="_blank" rel="noopener noreferrer">
+                    <Icon name="Youtube" size={20} />
+                  </a>
                 </Button>
               </div>
             </div>
