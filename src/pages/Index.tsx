@@ -391,10 +391,10 @@ const Index = () => {
               <h4 className="font-heading font-semibold text-lg mb-4">Социальные сети</h4>
               <div className="flex gap-4">
                 <Button variant="outline" size="icon" className="rounded-full">
-                  <Icon name="Instagram" size={20} />
+                  <Icon name="Send" size={20} />
                 </Button>
                 <Button variant="outline" size="icon" className="rounded-full">
-                  <Icon name="Facebook" size={20} />
+                  <Icon name="Circle" size={20} />
                 </Button>
                 <Button variant="outline" size="icon" className="rounded-full">
                   <Icon name="Youtube" size={20} />
